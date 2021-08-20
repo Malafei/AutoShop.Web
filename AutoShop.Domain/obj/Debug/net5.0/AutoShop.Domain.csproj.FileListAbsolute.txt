@@ -1,0 +1,15 @@
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.AssemblyInfo.cs
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\AutoShop.Domain\bin\Debug\net5.0\AutoShop.Domain.deps.json
+C:\Users\user\source\repos\AutoShop.Domain\bin\Debug\net5.0\AutoShop.Domain.runtimeconfig.json
+C:\Users\user\source\repos\AutoShop.Domain\bin\Debug\net5.0\AutoShop.Domain.runtimeconfig.dev.json
+C:\Users\user\source\repos\AutoShop.Domain\bin\Debug\net5.0\AutoShop.Domain.dll
+C:\Users\user\source\repos\AutoShop.Domain\bin\Debug\net5.0\ref\AutoShop.Domain.dll
+C:\Users\user\source\repos\AutoShop.Domain\bin\Debug\net5.0\AutoShop.Domain.pdb
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.dll
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\ref\AutoShop.Domain.dll
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.pdb
+C:\Users\user\source\repos\AutoShop.Domain\obj\Debug\net5.0\AutoShop.Domain.genruntimeconfig.cache
