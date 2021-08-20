@@ -1,0 +1,98 @@
+﻿@model AutoShop.Web.Models.UserCreateViewMode
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <h1 style="text-align:center">AutoShop.Web</h1>
+    <h2 style="text-align:center">Sign Up</h2>
+    <form asp-action="Create" class="modal-body">
+
+        <div class="container">
+
+            <div class="form-group">
+                <label asp-for="Login" class="control-label"></label>
+                <input asp-for="Login" type="text" placeholder="Enter login" class="form-control" required />
+                <span asp-validation-for="Login" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" type="password" placeholder="Enter Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="KeyWord" class="control-label"></label>
+                <input asp-for="KeyWord" type="text" placeholder="Enter keyword" class="form-control" />
+                <span asp-validation-for="KeyWord" class="text-danger"></span>
+
+            </div>
+
+            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+            <div class="clearfix">
+                <button type="submit" class="signupbtn">Sign Up</button>
+            </div>
+        </div>
+    </form>
+
+    @*<script>
+        window.addEventListener("load", function () {
+            var txtLogin = document.getElementById("txtLogin")
+            var txtPassword = document.getElementById("txtPassword");
+            var txtConfirmPassword = document.getElementById("txtConfirmPassword");
+            var txtKeyWord = document.getElementById("txtKeyWord")
+
+
+            txtLogin.oninput = function () {
+                if (txtLogin.value == "") { // перевіряємо чи в інпуті є значення
+                    showError(txtLogin);
+                }
+                else {
+                    showSuccess(txtLogin);
+                }
+            }
+            txtPassword.oninput = isValidPassword; // перевірка на правельність паролів
+            txtConfirmPassword.oninput = isValidPassword; // перевірка на правельність паролів
+            txtKeyWord = function () {
+                if (txtLogin.value == "") { // перевіряємо чи в інпуті є значення
+                    showError(txtLogin);
+                }
+                else {
+                    showSuccess(txtLogin);
+                }
+            }
+            function isValidPassword(e) {
+                if (txtPassword.value != txtConfirmPassword.value || txtConfirmPassword.value == "") { // перевіряємо чи паролі співпадають та чи вони не пусті
+                    txtConfirmPassword.classList.add("is-invalid");     //додаємо помилку в поле ConfirmPassword
+                    txtPassword.classList.add("is-invalid");            //додаємо помилку в поле Password
+                    txtConfirmPassword.classList.remove("is-valid");    //видаляєм успіх з поля ConfirmPassword
+                    txtPassword.classList.remove("is-valid");           //видаляєм успіх з поля Password
+                    console.log("tak");
+                }
+                else {
+                    txtConfirmPassword.classList.remove("is-invalid");    //видаляєм помилку в поле ConfirmPassword
+                    txtPassword.classList.remove("is-invalid");           //видаляєм помилку в поле Password
+                    txtConfirmPassword.classList.add("is-valid");         //додаємо успіх з поля ConfirmPassword
+                    txtPassword.classList.add("is-valid");                //додаємо успіх з поля Password
+                    console.log("ni");
+                }
+            }
+            function showError(input) { // сюди передається інпут який передаємо isValidTextInput(e)
+                input.classList.add("is-invalid"); // додаємо валідацію is-invalid
+                input.classList.remove("is-valid"); // видаляємо валідацію is-valid
+            }
+            function showSuccess(input) { // сюди передається інпут який передаємо isValidTextInput(e)
+                input.classList.remove("is-invalid"); // видаляємо валідацію is-invalid
+                input.classList.add("is-valid"); // додаємо валідацію is-valid
+            }
+
+
+        }
+    </script>*@

@@ -1,0 +1,13 @@
+﻿@model SearchCarIndexModel
+
+    <form method="get">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Марка, Модель, Рік</label>
+                    <input asp-for="searchAttribute" class="form-control" />
+                    <input type="submit" value="Шукати" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>

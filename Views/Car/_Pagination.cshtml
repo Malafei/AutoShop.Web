@@ -1,0 +1,64 @@
+﻿@model HomeIndexViewModel
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @{
+            int startPage = Model.Page - 3; //ліва сторона від поточного яку ми бачим
+            int endPage = Model.Page + 3; // права сторона від поточного яку ми бачим
+
+            int Previous = Model.Page - 1; //назад
+            int Next = Model.Page + 1; //вперед
+
+            if (Model.Page < 2) { Previous = Model.Page; } // якщо поточна сторінка менша другої ми перейти назад неможем
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@Previous" asp-route-searchAttribute="@Model.Search.searchAttribute">Prev.</a>
+            </li>
+            if (startPage >= 2) // якщо стартове поле більше рівне другій сторінці показуємо першу сторінку
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="1" asp-route-searchAttribute="@Model.Search.searchAttribute">1</a>
+                </li>
+            }
+
+
+            if (startPage > 2)  // якщо стартове поле більше другої сторінкі показуємо проміжуток
+            {
+                <li class="page-item"><a class="page-link" asp-action="Index">...</a></li>
+            }
+
+
+
+            for (int i = startPage; i <= endPage; i++) // цикл в якому ми виводимо сторінкі 3 вліво 3 вправо і поточна
+            {
+                if (i > 0 && i <= Model.PageCount) // виводимо сторінку якщо вона більша нуля і менша рівна кількості всіх сторінок
+                {
+                    string active = i == Model.Page ? "active" : "";
+                    <li class="page-item @active">
+                        <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@i" asp-route-searchAttribute="@Model.Search.searchAttribute">@i</a>
+                    </li>
+                }
+            }
+
+            if (endPage < (Model.PageCount - 1)) //якщо кінцеве поле більше рівне загальній кількості сторінок -1 показуємо проміжуток
+            {
+                <li class="page-item"><a class="page-link" asp-action="Index">...</a></li>
+            }
+
+            if (endPage <= (Model.PageCount - 1)) // якщо кінцеве поле більше рівне загальній кількості сторінок - 1 показуємо останню сторінку
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@Model.PageCount" asp-route-searchAttribute="@Model.Search.searchAttribute">@Model.PageCount</a>
+                </li>
+            }
+
+
+            if (Model.Page > (Model.PageCount - 2)) { Next = Model.Page; } // якщо поточна сторінка більша від загальної клькості -2 перейти на наступну ми неможем
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@Next" asp-route-searchAttribute="@Model.Search.searchAttribute">Next</a>
+            </li>
+
+        }
+    </ul>
+</nav>
+

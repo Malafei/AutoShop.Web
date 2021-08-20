@@ -1,0 +1,32 @@
+﻿@model HomeIndexViewModel
+
+<h1>Список авто</h1>
+@await Html.PartialAsync("_Search", Model.Search)
+
+<a asp-action="Create" class="btn btn-success">Додати авто</a>
+<a asp-action="EditAvto" class="btn btn-info">Редагувати</a>
+<a asp-action="Delete" class="btn btn-danger">Видалити авто</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Марка</th>
+            <th scope="col">Модель</th>
+            <th scope="col">Рік</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cars)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Mark</td>
+                <td>@item.Model</td>
+                <td>@item.Year</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@await Html.PartialAsync("_Pagination", Model)

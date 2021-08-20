@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoShop.Web", "AutoShop.Web.csproj", "{E4712957-EA49-4F53-9D18-5C7655F352D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoShop.Domain", "..\AutoShop.Domain\AutoShop.Domain.csproj", "{50EE0F9F-4FDE-4674-A9BC-9597161EA406}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4712957-EA49-4F53-9D18-5C7655F352D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4712957-EA49-4F53-9D18-5C7655F352D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4712957-EA49-4F53-9D18-5C7655F352D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4712957-EA49-4F53-9D18-5C7655F352D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50EE0F9F-4FDE-4674-A9BC-9597161EA406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50EE0F9F-4FDE-4674-A9BC-9597161EA406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50EE0F9F-4FDE-4674-A9BC-9597161EA406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50EE0F9F-4FDE-4674-A9BC-9597161EA406}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD9B95CA-4B78-4F38-8888-A812BB7F0E0D}
+	EndGlobalSection
+EndGlobal
