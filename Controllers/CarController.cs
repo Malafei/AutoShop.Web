@@ -142,6 +142,14 @@ namespace AutoShop.Web.Controllers
                     return View(model);
 
                 Car b = _context.Cars.Find(model.Id);
+
+                if (b.PathImages != null)
+                {
+                    var dir = Path.Combine(Directory.GetCurrentDirectory(), "images");
+                    var filePath = Path.Combine(dir, b.PathImages);
+                    System.IO.File.Delete(filePath);
+                }
+
                 _context.Cars.Remove(b);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
