@@ -19,15 +19,16 @@ namespace AutoShop.Web.Models
 
     public class CarCreateViewModel
     {
+        [Required]
         [Display(Name ="Марка")]
         public string Mark { get; set; }
-
+        [Required]
         [Display(Name = "Модель")]
         public string Model { get; set; }
-
+        [Required]
         [Display(Name = "Рік випуску")]
         public int Year { get; set; }
-
+        [Required]
         [Display(Name = "Фото")]
         public IFormFile Photo { get; set; }
     }
@@ -42,6 +43,7 @@ namespace AutoShop.Web.Models
 
     public class CarEditViewModel
     {
+        [Required]
         [Display(Name = "ID машини в списку")]
         public int Id { get; set; }
 
@@ -49,10 +51,15 @@ namespace AutoShop.Web.Models
 
         [Display(Name = "Нова Марка")]
         public string MarkNew { get; set; }
+
         [Display(Name = "Нова Модель")]
         public string ModelNew { get; set; }
+
         [Display(Name = "Новий Рік випуску для машини")]
         public int YearNew { get; set; }
+
+        [Display(Name = "Фото")]
+        public IFormFile Photo { get; set; }
     }
 
 

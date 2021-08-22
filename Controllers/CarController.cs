@@ -174,22 +174,47 @@ namespace AutoShop.Web.Controllers
             try
             {
                 Car NewCar = _context.Cars.Find(carChange.Id);
-                NewCar.Mark = carChange.MarkNew;
-                NewCar.Model = carChange.ModelNew;
-                NewCar.Year = carChange.YearNew;
-
-                if (NewCar != null) /*Перевірка, чі нормально записались данні*/
+                if (NewCar != null)
                 {
-                    _context.Entry(NewCar).State = EntityState.Modified; /*Кажем, що такій об'єкт в базі данних вже є і нам потрібно лише редагувати його*/
-                    _context.SaveChanges(); /*Сохраняємо*/
-                    return RedirectToAction("Index");
+                    if (carChange.MarkNew != null)
+                        NewCar.Mark = carChange.MarkNew;
+                    if (carChange.ModelNew != null)
+                        NewCar.Model = carChange.ModelNew;
+                    if (carChange.YearNew != 0)
+                        NewCar.Year = carChange.YearNew;
+                    if (carChange.Photo != null)
+                    {
+                        if (NewCar.PathImages != null)
+                        {
+                            var directory = Path.Combine(Directory.GetCurrentDirectory(), "images");
+                            var FilePath = Path.Combine(directory, NewCar.PathImages);
+                            System.IO.File.Delete(FilePath);
+                        }
+
+                        var ext = Path.GetExtension(carChange.Photo.FileName);
+                        string fileName = Path.GetRandomFileName() + ext;
+                        var dir = Path.Combine(Directory.GetCurrentDirectory(), "images");
+                        var filePath = Path.Combine(dir, fileName);
+                        using (var stream = System.IO.File.Create(filePath)) { carChange.Photo.CopyTo(stream); }
+
+                        NewCar.PathImages = fileName;
+                    }
+
+                    if (NewCar != null) /*Перевірка, чі нормально записались данні*/
+                    {
+                        _context.Entry(NewCar).State = EntityState.Modified; /*Кажем, що такій об'єкт в базі данних вже є і нам потрібно лише редагувати його*/
+                        _context.SaveChanges(); /*Сохраняємо*/
+                        return RedirectToAction("Index");
+                    }
                 }
+                ModelState.AddModelError("Id", "Такого авто не знайдено");
+                return View(carChange);
+
             }
             catch
             {
                 return View(carChange);
             }
-            return View(carChange);
         }
     }
 }
