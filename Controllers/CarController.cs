@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -100,11 +101,23 @@ namespace AutoShop.Web.Controllers
             if (!ModelState.IsValid)
                 return View(carmodel);
 
+            string fileName = "";
+            if (carmodel.Photo != null)
+            {
+                var ext = Path.GetExtension(carmodel.Photo.FileName);
+                fileName = Path.GetRandomFileName() + ext;
+                var dir = Path.Combine(Directory.GetCurrentDirectory(), "images");
+                var filePath = Path.Combine(dir, fileName);
+                using(var stream = System.IO.File.Create(filePath)) { carmodel.Photo.CopyTo(stream); }
+            }
+
+
             Car car = new Car
             {
+                PathImages = fileName,
                 Mark = carmodel.Mark,
                 Model = carmodel.Model,
-                Year = carmodel.Year
+                Year = carmodel.Year,
             };
 
             _context.Cars.Add(car);

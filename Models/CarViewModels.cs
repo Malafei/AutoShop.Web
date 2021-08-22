@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,16 +13,23 @@ namespace AutoShop.Web.Models
         public string Mark { get; set; }
         public string Model { get; set; }
         public int Year { get; set; }
+
+        public string PathImage { get; set; }
     }
 
     public class CarCreateViewModel
     {
         [Display(Name ="Марка")]
         public string Mark { get; set; }
+
         [Display(Name = "Модель")]
         public string Model { get; set; }
+
         [Display(Name = "Рік випуску")]
         public int Year { get; set; }
+
+        [Display(Name = "Фото")]
+        public IFormFile Photo { get; set; }
     }
 
     public class CarDeleteViewModel

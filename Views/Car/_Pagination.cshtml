@@ -14,6 +14,7 @@
             <li class="page-item">
                 <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@Previous" asp-route-searchAttribute="@Model.Search.searchAttribute">Prev.</a>
             </li>
+
             if (startPage >= 2) // якщо стартове поле більше рівне другій сторінці показуємо першу сторінку
             {
                 <li class="page-item">
@@ -24,7 +25,7 @@
 
             if (startPage > 2)  // якщо стартове поле більше другої сторінкі показуємо проміжуток
             {
-                <li class="page-item"><a class="page-link" asp-action="Index">...</a></li>
+                <li class="page-item"><a class="page-link">...</a></li>
             }
 
 
@@ -34,15 +35,33 @@
                 if (i > 0 && i <= Model.PageCount) // виводимо сторінку якщо вона більша нуля і менша рівна кількості всіх сторінок
                 {
                     string active = i == Model.Page ? "active" : "";
+                    if (startPage >= (Model.PageCount - 6) && i == startPage) // перевіряємо якщо стартова позиція більша рівна загальній кількості - 6 сторінок та і == стартовій позиції
+                    {
+                        for (int j = (Model.PageCount - 6); j < startPage; j++) // то запускаєм цикл який виведе необхідні сторінки які не увійшли в діапазон старт-енд
+                        {
+                            <li class="page-item @active">
+                                <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@j" asp-route-searchAttribute="@Model.Search.searchAttribute">@j</a>
+                            </li>
+                        }
+                    }
                     <li class="page-item @active">
                         <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@i" asp-route-searchAttribute="@Model.Search.searchAttribute">@i</a>
                     </li>
+                    if (endPage <= 6 && i == endPage) // перевіряємо якщо кінцева позиція менша рівна 6 сторінок та і == кінцевій позиції
+                    {
+                        for (int j = endPage; j <= 7; j++) // то запускаєм цикл який виведе необхідні сторінки які не увійшли в діапазон старт-енд
+                        {
+                            <li class="page-item @active">
+                                <a class="page-link" asp-action="Index" asp-controller="Car" asp-route-page="@j" asp-route-searchAttribute="@Model.Search.searchAttribute">@j</a>
+                            </li>
+                        }
+                    }
                 }
             }
 
             if (endPage < (Model.PageCount - 1)) //якщо кінцеве поле більше рівне загальній кількості сторінок -1 показуємо проміжуток
             {
-                <li class="page-item"><a class="page-link" asp-action="Index">...</a></li>
+                <li class="page-item"><a class="page-link">...</a></li>
             }
 
             if (endPage <= (Model.PageCount - 1)) // якщо кінцеве поле більше рівне загальній кількості сторінок - 1 показуємо останню сторінку

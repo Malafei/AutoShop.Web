@@ -11,6 +11,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Фото</th>
             <th scope="col">Марка</th>
             <th scope="col">Модель</th>
             <th scope="col">Рік</th>
@@ -19,12 +20,15 @@
     <tbody>
         @foreach (var item in Model.Cars)
         {
-            <tr>
-                <th scope="row">@item.Id</th>
-                <td>@item.Mark</td>
-                <td>@item.Model</td>
-                <td>@item.Year</td>
-            </tr>
+        <tr>
+            <th scope="row" style="font-size:23px; height: 100px; vertical-align: middle">@item.Id</th>
+            <td>
+                <img src="/images/@item.PathImage" alt="No Image" height="100" />
+            </td>
+            <td style="font-size: 23px; vertical-align: middle">@item.Mark</td>
+            <td style="font-size: 23px; vertical-align: middle">@item.Model</td>
+            <td style="font-size: 23px; vertical-align: middle">@item.Year</td>
+        </tr>
         }
     </tbody>
 </table>

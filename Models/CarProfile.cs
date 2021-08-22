@@ -11,7 +11,7 @@ namespace AutoShop.Web.Models
     {
         public CarProfile()
         {
-            CreateMap<Car, CarViewModel>();
+            CreateMap<Car, CarViewModel>().ForMember("PathImage", y => y.MapFrom(s => s.PathImages));
         }
 
     }
