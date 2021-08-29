@@ -129,6 +129,7 @@ namespace AutoShop.Web.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete()
         {
             return View();

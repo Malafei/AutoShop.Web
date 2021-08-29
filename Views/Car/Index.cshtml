@@ -5,7 +5,10 @@
 
 <a asp-action="Create" class="btn btn-success">Додати авто</a>
 <a asp-action="EditAvto" class="btn btn-info">Редагувати</a>
-<a asp-action="Delete" class="btn btn-danger">Видалити авто</a>
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="Delete" class="btn btn-danger">Видалити авто</a>
+}
 
 <table class="table">
     <thead>
