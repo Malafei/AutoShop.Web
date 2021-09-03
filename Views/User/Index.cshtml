@@ -1,7 +1,30 @@
-﻿@model UserSiginVievModel
+﻿@{
+    ViewBag.Title = "Список пользователей";
+}
 
+<a asp-action="Create">Добавить пользователя</a>
 
-    <div class="container emp-profile" style="background: -webkit-linear-gradient(left, #456AFD, #00c6ff); ">
+<table class="table">
+    <tr><th>Email</th><th>Name</th><th></th></tr>
+    @foreach (var user in Model)
+    {
+        string[] nameUser = user.Email.Split(new char[] { '@' });
+        <tr>
+            <td>@user.Email</td>
+            <td>@nameUser[0]</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Изменить</a>
+                    <button type="submit" style="width:auto" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+@*<div class="container emp-profile" style="background: -webkit-linear-gradient(left, #456AFD, #00c6ff); ">
         <form method="post">
             <div class="row">
                 <div class="col-md-4">
@@ -26,6 +49,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
                             </li>
@@ -56,10 +80,10 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label asp-for="Login">User Id</label>
+                                    <label >User Id</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" asp-for="Login" class="form-control" value="zibert" />
+                                    <input type="text" class="form-control" value="zibert" />
                                 </div>
                             </div>
                             <div class="row">
@@ -123,4 +147,4 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div>*@

@@ -1,0 +1,65 @@
+﻿@*@model EditPasswordVievModel
+@{
+    ViewData["Title"] = "Edit Password";
+}
+
+
+<h1 style="text-align:center">AutoShop.Web</h1>
+<h2 style="text-align:center">Login to the account</h2>
+<form asp-controller="User" asp-action="EditPassword" class="modal-body animate">
+
+    <div>
+        <label asp-for="NewPassword"><b>Please enter new password</b></label>
+        <input asp-for="NewPassword" type="text" placeholder="New password" autocomplete="off">
+        <span asp-validation-for="NewPassword" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="ConfirmPassword"><b>Please confirm password</b></label>
+        <input asp-for="ConfirmPassword" type="text" placeholder="Confirm pasword" autocomplete="off">
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Next</button>
+    <hr />
+    <div class="form-group" style="vertical-align:text-bottom">No account?<a asp-area="" asp-controller="User" asp-action="Create">Create it!</a></div>
+    <div class="form-group" style="vertical-align:text-bottom">Return to!<a asp-area="" asp-controller="User" asp-action="LoginAut"> Log in</a></div>
+</form>*@
+@model EditUserViewModel
+@{
+    ViewBag.Title = "Редактирование пользователя";
+}
+
+
+<form asp-action="Edit" asp-controller="User">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="control-label">Email</label>
+        <input type="email" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NameUser" class="control-label">Name User</label>
+        <input type="text" asp-for="NameUser" class="form-control" />
+        <span asp-validation-for="NameUser" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RoleSelect" class="control-label">Роль користувача</label>
+        <select asp-for="RoleSelect" class="form-control">
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+        </select>
+        <span asp-validation-for="RoleSelect" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-outline-secondary" />
+    </div>
+</form>

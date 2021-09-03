@@ -7,6 +7,7 @@
 <h2 style="text-align:center">Login to the account</h2>
 <form asp-controller="Account" asp-action="Login" method="post" class="modal-body animate">
     <input hidden asp-for="ReturnUrl" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div>
         <label asp-for="Email"><b>Username</b></label>

@@ -134,6 +134,7 @@ namespace AutoShop.Web.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Delete(CarDeleteViewModel model)
         {

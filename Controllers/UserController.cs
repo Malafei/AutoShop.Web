@@ -12,19 +12,104 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using AutoShop.Domain.Entities.Identity;
 
 namespace AutoShop.Web.Controllers
 {
     [Authorize]
     public class UserController : Controller
     {
-        private readonly AppEFContext _context;
+        UserManager<AppUser> _userManager;
+        RoleManager<AppRole> _roleManager;
 
-        public UserController(AppEFContext context)
+        public UserController(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
+        public IActionResult Index() => View(_userManager.Users.ToList());
+
+        public IActionResult Create() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string[] nameUser = model.Email.Split(new char[] { '@' });
+                AppUser user = new AppUser { Email = model.Email, UserName = nameUser[0]};
+                var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "User");
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return RedirectToAction("Index");
+            }
+            EditUserViewModel model = new EditUserViewModel { Id = user.Id.ToString(), Email = user.Email, NameUser = user.UserName};
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await _userManager.FindByIdAsync(model.Id);
+                string[] nameUser = model.Email.Split(new char[] { '@' });
+                if (user != null)
+                {
+                    user.Email = model.Email;
+                    user.UserName = model.NameUser;
+                    await _userManager.AddToRoleAsync(user, model.RoleSelect);
+                    
+
+                    var result = await _userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(string id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+            }
+            return RedirectToAction("Index");
+        }
 
         //[HttpGet]
         //public IActionResult Index()

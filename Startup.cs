@@ -66,13 +66,9 @@ namespace AutoShop.Web
             }
             app.UseStaticFiles();
 
-            if (roleManager.Roles.Count() == 0)
+            if (roleManager.Roles.Count() == 1)
             {
                 var result = roleManager.CreateAsync(new AppRole
-                {
-                    Name = "Admin"
-                }).Result;
-                result = roleManager.CreateAsync(new AppRole
                 {
                     Name = "User"
                 }).Result;

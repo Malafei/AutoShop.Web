@@ -40,10 +40,11 @@ namespace AutoShop.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                string[] nameUser = model.Email.Split(new char[] { '@' });
                 user = new AppUser
                 {
                     Email = model.Email,
-                    UserName = model.Email
+                    UserName = nameUser[0]
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -62,9 +63,9 @@ namespace AutoShop.Web.Controllers
 
         [HttpGet]
         [Route("Login")]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login(string returnUrl = null)
         {
-            return View();
+            return View(new LoginViewModels { ReturnUrl = returnUrl });
         }
 
         [HttpPost]
@@ -81,15 +82,22 @@ namespace AutoShop.Web.Controllers
                         model.Password, false, false);
                     if (result.Succeeded)
                     {
-                        if (model.ReturnUrl != null)
+                        if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                         {
                             return Redirect(model.ReturnUrl);
                         }
-                        return RedirectToAction("Index", "Home");
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Email", "Некорректные логин и(или) пароль");
+                        ModelState.AddModelError("Password", "Некорректные логин и(или) пароль");
                     }
                 }
             }
-            ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             return View(model);
         }
 
