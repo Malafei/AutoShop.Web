@@ -14,6 +14,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using AutoShop.Domain.Entities.Identity;
+using System.IO;
 
 namespace AutoShop.Web.Controllers
 {
@@ -78,8 +79,27 @@ namespace AutoShop.Web.Controllers
                 string[] nameUser = model.Email.Split(new char[] { '@' });
                 if (user != null)
                 {
+                    string fileName = "";
+                    if (model.Photo != null)
+                    {
+                        if (user.PathImages != null)
+                        {
+                            var directory = Path.Combine(Directory.GetCurrentDirectory(), "photo");
+                            var FilePath = Path.Combine(directory, user.PathImages);
+                            System.IO.File.Delete(FilePath);
+                        }
+
+                        var ext = Path.GetExtension(model.Photo.FileName);
+                        fileName = Path.GetRandomFileName() + ext;
+                        var dir = Path.Combine(Directory.GetCurrentDirectory(), "photo");
+                        var filePath = Path.Combine(dir, fileName);
+                        using (var stream = System.IO.File.Create(filePath)) { model.Photo.CopyTo(stream); }
+
+                    }
+
                     user.Email = model.Email;
                     user.UserName = model.NameUser;
+                    user.PathImages = fileName;
                     await _userManager.AddToRoleAsync(user, model.RoleSelect);
                     
 

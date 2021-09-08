@@ -85,6 +85,20 @@ namespace AutoShop.Web
                 RequestPath = "/images"
             });
 
+
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), "photo");
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(directory),
+                RequestPath = "/photo"
+            });
+
+
+
+
             app.UseRouting();
 
             app.UseAuthentication();

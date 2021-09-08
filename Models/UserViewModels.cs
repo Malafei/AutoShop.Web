@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -40,10 +41,12 @@ namespace AutoShop.Web.Models
     //}
     public class UserViewModel
     {
+        
         public string Id { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
         public DateTime DateRegestry { get; set; }
+        public string PathImage { get; set; }
     }
 
     //public class UserViewModel
@@ -62,6 +65,7 @@ namespace AutoShop.Web.Models
         [MinLength(8)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
     }
 
     public class EditUserViewModel
@@ -71,6 +75,9 @@ namespace AutoShop.Web.Models
         public string Email { get; set; }
         public string NameUser { get; set; }
         public string RoleSelect { get; set; }
+
+        [Display(Name = "Фото")]
+        public IFormFile Photo { get; set; }
     }
 
     //public class UserSiginVievModel

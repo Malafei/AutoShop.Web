@@ -100,7 +100,8 @@ namespace AutoShop.Web.Controllers
         {
             if (!ModelState.IsValid)
                 return View(carmodel);
-
+            
+                
             string fileName = "";
             if (carmodel.Photo != null)
             {
